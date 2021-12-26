@@ -9,42 +9,42 @@ public class Ultraman {
         this.healthPoint = healthPoint;
     }
 
-    public int attack(int healthPoint) {
+    public void attack(Monster monster) {
         int attackType = (int) (Math.random() * 10);
         switch (attackType) {
             case 0:
-                healthPoint = criticalAttack(healthPoint);
+                monster.setHealthPoint(criticalAttack(monster));
                 break;
             case 1:
             case 2:
             case 3:
-                healthPoint = magicAttack(healthPoint);
+                monster.setHealthPoint(magicAttack(monster));
                 break;
             default:
-                healthPoint = commonAttack(healthPoint);
+                monster.setHealthPoint(commonAttack(monster));
                 break;
         }
-        return healthPoint;
     }
 
-    public int commonAttack(int heathPoint) {
-        int damage = (int) Math.random() * 10 + 20;
-        return heathPoint - damage;
+    public int commonAttack(Monster monster) {
+        int damage = (int) (Math.random() * 10 + 20);
+        System.out.println("使用了 普攻"+monster.getName());
+        return monster.getHealthPoint() - damage;
     }
 
-    public int magicAttack(int healthPoint) {
+    public int magicAttack(Monster monster) {
         int damage = 30;
-        return healthPoint - damage;
+        return monster.getHealthPoint() - damage;
     }
 
-    public int criticalAttack(int healthPoint) {
+    public int criticalAttack(Monster monster) {
         int damage;
-        if (healthPoint > 60) {
-            damage = (int) (healthPoint * 3 / 4);
+        if (monster.getHealthPoint() > 60) {
+            damage = monster.getHealthPoint() * 3 / 4;
         } else {
             damage = 60;
         }
-        return healthPoint - damage;
+        return monster.getHealthPoint() - damage;
     }
 
     public Ultraman() {
