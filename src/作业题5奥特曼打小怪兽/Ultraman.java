@@ -13,7 +13,7 @@ public class Ultraman {
         this.healthPoint = healthPoint;
     }
 
-    public static void attack(ArrayList<Monster> liveMonsters) {
+    public void attack(ArrayList<Monster> liveMonsters) {
         int attackType = (int) (Math.random() * 10);
         int attackTarget = (int)(Math.random()*(liveMonsters.size()));
         Monster attackMonster = liveMonsters.get(attackTarget);
@@ -36,19 +36,19 @@ public class Ultraman {
         }
     }
 
-    public static int commonAttack(Monster monster) {
+    public int commonAttack(Monster monster) {
         int damage = (int) (Math.random() * 10 + 20);
         System.out.println("使用了 普攻  对"+monster.getName()+"造成了"+damage+"伤害");
         return monster.getHealthPoint() - damage;
     }
 
-    public static int magicAttack(Monster monster) {
+    public int magicAttack(Monster monster) {
         int damage = 30;
         System.out.println("使用了 魔法攻击  对"+monster.getName()+"造成了"+damage+"伤害");
         return monster.getHealthPoint() - damage;
     }
 
-    public static int criticalAttack(Monster monster) {
+    public int criticalAttack(Monster monster) {
         int damage;
         if (monster.getHealthPoint() > 60) {
             damage = monster.getHealthPoint() * 3 / 4;

@@ -12,6 +12,12 @@ public class Monster {
         this.healthPoint = healthPoint;
     }
 
+    public void commonAttack(Ultraman ultraman) {
+        int damage = (int) (Math.random() * 10 + 10);
+        System.out.println(name+"使用了普攻  对"+ultraman.getName()+"造成了"+damage+"伤害");
+        ultraman.setHealthPoint(ultraman.getHealthPoint()-damage);
+    }
+
     public String getName() {
         return name;
     }

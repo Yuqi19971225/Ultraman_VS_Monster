@@ -27,7 +27,17 @@ public class GameLauncher {
             dijia.attack(liveMonsters);
             //打印怪兽血量
             for(int i=0;i<4;i++){
+                if(monsters[i].getHealthPoint()<0){
+                    monsters[i].setHealthPoint(0);
+                    liveMonsters.remove(monsters[i]);
+                }
                 System.out.println(monsters[i].getName()+"小怪兽  血量"+monsters[i].getHealthPoint());
+            }
+
+            //怪兽攻击
+
+            for(int i=0;i<liveMonsters.size();i++){
+                liveMonsters.get(i).commonAttack(dijia);
             }
             round++;
         }
