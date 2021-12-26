@@ -1,6 +1,7 @@
 package 作业题5奥特曼打小怪兽;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class GameLauncher {
 
@@ -18,11 +19,16 @@ public class GameLauncher {
         liveMonsters.add(monster3);
         liveMonsters.add(monster4);
         int round = 1;
+        System.out.println("游戏开始！");
+        Scanner input = new Scanner(System.in);
         while (round<10) {
             System.out.println("========第" + round + "回合========");
             System.out.println(dijia.getName() + "凹凸曼  血量" + dijia.getHealthPoint());
-            int attackTarget = (int)(Math.random()*(liveMonsters.size()));
-            dijia.attack(liveMonsters.get(attackTarget));
+            dijia.attack(liveMonsters);
+            //打印怪兽血量
+            for(int i=0;i<4;i++){
+                System.out.println(monsters[i].getName()+"小怪兽  血量"+monsters[i].getHealthPoint());
+            }
             round++;
         }
     }

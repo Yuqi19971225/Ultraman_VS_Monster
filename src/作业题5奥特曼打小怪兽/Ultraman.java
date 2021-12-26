@@ -1,5 +1,9 @@
 package 作业题5奥特曼打小怪兽;
 
+import java.util.ArrayList;
+
+import static java.util.ArrayList.*;
+
 public class Ultraman {
     private String name;
     private int healthPoint;
@@ -9,41 +13,49 @@ public class Ultraman {
         this.healthPoint = healthPoint;
     }
 
-    public void attack(Monster monster) {
+    public static void attack(ArrayList<Monster> liveMonsters) {
         int attackType = (int) (Math.random() * 10);
+        int attackTarget = (int)(Math.random()*(liveMonsters.size()));
+        Monster attackMonster = liveMonsters.get(attackTarget);
         switch (attackType) {
             case 0:
-                monster.setHealthPoint(criticalAttack(monster));
+                attackMonster.setHealthPoint(criticalAttack(attackMonster));
                 break;
             case 1:
             case 2:
             case 3:
-                monster.setHealthPoint(magicAttack(monster));
+                for(int i=0;i<liveMonsters.size();i++){
+                    attackMonster = liveMonsters.get(i);
+                    attackMonster.setHealthPoint(magicAttack(attackMonster));
+                }
+
                 break;
             default:
-                monster.setHealthPoint(commonAttack(monster));
+                attackMonster.setHealthPoint(commonAttack(attackMonster));
                 break;
         }
     }
 
-    public int commonAttack(Monster monster) {
+    public static int commonAttack(Monster monster) {
         int damage = (int) (Math.random() * 10 + 20);
-        System.out.println("使用了 普攻"+monster.getName());
+        System.out.println("使用了 普攻  对"+monster.getName()+"造成了"+damage+"伤害");
         return monster.getHealthPoint() - damage;
     }
 
-    public int magicAttack(Monster monster) {
+    public static int magicAttack(Monster monster) {
         int damage = 30;
+        System.out.println("使用了 魔法攻击  对"+monster.getName()+"造成了"+damage+"伤害");
         return monster.getHealthPoint() - damage;
     }
 
-    public int criticalAttack(Monster monster) {
+    public static int criticalAttack(Monster monster) {
         int damage;
         if (monster.getHealthPoint() > 60) {
             damage = monster.getHealthPoint() * 3 / 4;
         } else {
             damage = 60;
         }
+        System.out.println("使用了 必杀  对"+monster.getName()+"造成了"+damage+"伤害");
         return monster.getHealthPoint() - damage;
     }
 
